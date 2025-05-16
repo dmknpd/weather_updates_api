@@ -12,29 +12,20 @@ exports.subscribe = async (email, city, frequency) => {
     throw new Error("Email already subscribed");
   }
 
-  const transaction = await sequelize.transaction(); //transaction
-
   try {
     const confirmationToken = generateToken();
 
-    const newSubscription = await Subscription.create(
-      {
-        email,
-        city,
-        frequency,
-        confirmationToken,
-      },
-      { transaction }
-    );
+    const newSubscription = await Subscription.create({
+      email,
+      city,
+      frequency,
+      confirmationToken,
+    });
 
     await emailService.sendConfirmationEmail(email, city, confirmationToken);
 
-    await transaction.commit(); //transaction commit
-
     return newSubscription;
   } catch (error) {
-    await transaction.rollback(); //transaction rollback
-
     console.error("Subscription failed: ", error.message);
     throw new Error("Subscription failed");
   }
@@ -60,17 +51,19 @@ exports.confirmSubscription = async (confirmationToken) => {
 
     const unsubscribeToken = generateToken();
 
-    subscription.confirmed = true;
-    subscription.confirmationToken = null;
-    subscription.unsubscribeToken = unsubscribeToken;
-
-    await subscription.save();
+    await subscription.update({
+      confirmed: true,
+      confirmationToken: null,
+      unsubscribeToken: unsubscribeToken,
+    });
 
     await emailService.sendUnsubscribeEmail(
       subscription.email,
       subscription.city,
       unsubscribeToken
     );
+
+    return subscription;
   } catch (error) {
     console.error("Error confirming subscription: ", error.message);
     throw new Error("Token not found");
