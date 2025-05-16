@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 
-exports.generateToken = (payload) => {
+exports.generateToken = () => {
   return crypto.randomBytes(20).toString("hex");
 };
 
