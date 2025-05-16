@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-
 const transporter = require("../config/mail");
 
 exports.sendConfirmationEmail = async (email, city, token) => {

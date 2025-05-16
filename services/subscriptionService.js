@@ -2,21 +2,14 @@ const sequelize = require("../config/db");
 const Subscription = require("../models/subscription");
 const { generateToken } = require("../utils/tokenUtils");
 const emailService = require("./emailService");
-const weatherService = require("./weatherService");
 
 exports.subscribe = async (email, city, frequency) => {
-  try {
-    await weatherService.currentWeather(city);
-  } catch (error) {
-    throw new Error(`City validation failed: ${error.message}`);
-  }
-
   const existingSubscription = await Subscription.findOne({
     where: { email, city },
   });
 
   if (existingSubscription) {
-    throw new Error("Email already subscribed to updates for this city");
+    throw new Error("Email already subscribed");
   }
 
   const transaction = await sequelize.transaction(); //transaction
@@ -42,6 +35,7 @@ exports.subscribe = async (email, city, frequency) => {
   } catch (error) {
     await transaction.rollback(); //transaction rollback
 
-    throw new Error("Subscription failed: " + error.message);
+    console.error("Subscription failed:", error.message);
+    throw new Error("Subscription failed");
   }
 };

@@ -4,5 +4,6 @@ const router = express.Router();
 const subscriptionController = require("../controllers/subscriptionController");
 
 router.post("/subscribe", subscriptionController.subscribe);
+router.get("/confirm/:token", subscriptionController.confirmSubscription);
 
 module.exports = router;
