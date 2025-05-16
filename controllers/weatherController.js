@@ -4,7 +4,7 @@ exports.getWeather = async (req, res) => {
   const { city } = req.query;
 
   if (!city) {
-    return res.status(400).json({ error: "City parameter is required" });
+    return res.status(400).json({ error: "Invalid request" });
   }
 
   try {
@@ -12,6 +12,6 @@ exports.getWeather = async (req, res) => {
 
     res.json(weatherData);
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    res.status(404).json({ error: "City not found" });
   }
 };

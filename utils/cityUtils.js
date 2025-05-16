@@ -4,7 +4,7 @@ const isCityMatched = (city, responseCity) => {
 
 const validateCity = (city, responseCity) => {
   if (!isCityMatched(city, responseCity)) {
-    throw new Error(`City "${city}" not found`);
+    throw new Error(`City not found`);
   }
 };
 
