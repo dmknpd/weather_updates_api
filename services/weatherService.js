@@ -24,6 +24,7 @@ exports.currentWeather = async (city) => {
       description: current.condition.text,
     };
   } catch (error) {
+    console.error("Error fetching data: ", error.message);
     throw new Error("Invalid request");
   }
 };

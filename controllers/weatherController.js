@@ -10,7 +10,7 @@ exports.getWeather = async (req, res) => {
   try {
     const weatherData = await weatherService.currentWeather(city);
 
-    res.json(weatherData);
+    res.status(200).json(weatherData);
   } catch (error) {
     res.status(404).json({ error: "City not found" });
   }
