@@ -15,7 +15,7 @@ exports.subscribe = async (email, city, frequency) => {
   const transaction = await sequelize.transaction(); //transaction
 
   try {
-    const confirmationToken = generateToken({ email, city, frequency });
+    const confirmationToken = generateToken();
 
     const newSubscription = await Subscription.create(
       {
@@ -35,7 +35,7 @@ exports.subscribe = async (email, city, frequency) => {
   } catch (error) {
     await transaction.rollback(); //transaction rollback
 
-    console.error("Subscription failed:", error.message);
+    console.error("Subscription failed: ", error.message);
     throw new Error("Subscription failed");
   }
 };
@@ -58,12 +58,42 @@ exports.confirmSubscription = async (confirmationToken) => {
       return;
     }
 
+    const unsubscribeToken = generateToken();
+
     subscription.confirmed = true;
     subscription.confirmationToken = null;
+    subscription.unsubscribeToken = unsubscribeToken;
 
     await subscription.save();
+
+    await emailService.sendUnsubscribeEmail(
+      subscription.email,
+      subscription.city,
+      unsubscribeToken
+    );
   } catch (error) {
-    console.error("Error confirming subscription:", error.message);
+    console.error("Error confirming subscription: ", error.message);
+    throw new Error("Token not found");
+  }
+};
+
+exports.unsubscribe = async (unsubscribeToken) => {
+  if (!isValidToken(unsubscribeToken)) {
+    throw new Error("Invalid token");
+  }
+
+  try {
+    const subscription = await Subscription.findOne({
+      where: { unsubscribeToken },
+    });
+
+    if (!subscription) {
+      throw new Error("Token not found");
+    }
+
+    await subscription.destroy();
+  } catch (error) {
+    console.error("Error deleting subscription: ", error.message);
     throw new Error("Token not found");
   }
 };

@@ -39,3 +39,18 @@ exports.confirmSubscription = async (req, res) => {
     return res.status(400).json({ error: "Invalid token" });
   }
 };
+
+exports.unsubscribe = async (req, res) => {
+  const { token } = req.params;
+
+  try {
+    await subscriptionService.unsubscribe(token);
+    res.status(200).json({ message: "Unsubscribed successfully" });
+  } catch (error) {
+    if (error.message === "Token not found") {
+      return res.status(404).json({ error: "Token not found" });
+    }
+    console.error("Confirmation error:", error.message);
+    return res.status(400).json({ error: "Invalid token" });
+  }
+};
