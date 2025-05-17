@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const { sequelize } = require("./models");
+const { runMigrations } = require("./config/umzug");
 const weatherRoutes = require("./routes/weatherRoutes");
 const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const { startSchedulers } = require("./scheduler/scheduler");
@@ -19,6 +20,8 @@ app.use("/api", [weatherRoutes, subscriptionRoutes]);
 const start = async () => {
   try {
     await sequelize.authenticate();
+
+    await runMigrations();
 
     startSchedulers();
 
