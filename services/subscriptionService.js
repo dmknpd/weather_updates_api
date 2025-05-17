@@ -1,4 +1,5 @@
-const Subscription = require("../models/subscription");
+const db = require("../models");
+const Subscription = db.subscription;
 const { generateToken, isValidToken } = require("../utils/tokenUtils");
 const emailService = require("./emailService");
 const weatherService = require("./weatherService");
