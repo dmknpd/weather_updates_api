@@ -1,7 +1,7 @@
-const sequelize = require("../config/db");
 const Subscription = require("../models/subscription");
 const { generateToken, isValidToken } = require("../utils/tokenUtils");
 const emailService = require("./emailService");
+const weatherService = require("./weatherService");
 
 exports.subscribe = async (email, city, frequency) => {
   const existingSubscription = await Subscription.findOne({
@@ -22,7 +22,12 @@ exports.subscribe = async (email, city, frequency) => {
       confirmationToken,
     });
 
-    await emailService.sendConfirmationEmail(email, city, confirmationToken);
+    await emailService.sendConfirmationEmail(
+      email,
+      city,
+      frequency,
+      confirmationToken
+    );
 
     return newSubscription;
   } catch (error) {
@@ -60,6 +65,7 @@ exports.confirmSubscription = async (confirmationToken) => {
     await emailService.sendUnsubscribeEmail(
       subscription.email,
       subscription.city,
+      subscription.frequency,
       unsubscribeToken
     );
 
@@ -88,5 +94,29 @@ exports.unsubscribe = async (unsubscribeToken) => {
   } catch (error) {
     console.error("Error deleting subscription: ", error.message);
     throw new Error("Token not found");
+  }
+};
+
+exports.sendWeatherUpdates = async (frequency) => {
+  const subscriptions = await Subscription.findAll({
+    where: { frequency, confirmed: true },
+  });
+
+  for (let sub of subscriptions) {
+    try {
+      const weatherData = await weatherService.currentWeather(sub.city);
+      await emailService.sendWeatherUpdate(
+        sub.email,
+        sub.city,
+        frequency,
+        sub.unsubscribeToken,
+        weatherData
+      );
+    } catch (error) {
+      console.error(
+        `Error sending ${frequency} update to ${sub.email} for ${sub.city}:`,
+        error
+      );
+    }
   }
 };
