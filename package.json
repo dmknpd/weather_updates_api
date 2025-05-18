@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch index.js"
+    "start": "node --watch index.js",
+    "test": "jest"
   },
   "author": "dmk",
   "license": "ISC",
@@ -19,6 +20,8 @@
     "umzug": "^3.8.2"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.6.3"
+    "jest": "^29.7.0",
+    "sequelize-cli": "^6.6.3",
+    "supertest": "^7.1.1"
   }
 }
