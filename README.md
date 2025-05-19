@@ -315,7 +315,7 @@ npm test
 
 | Package        | Purpose                                                        |
 | -------------- | -------------------------------------------------------------- |
-| **express**    | Minimalist web framework for building APIs and web servers     |
+| **express**    | Web framework for building APIs and web servers                |
 | **sequelize**  | ORM for managing database models and queries                   |
 | **pg**         | PostgreSQL client for Node.js to interact with the database    |
 | **dotenv**     | Loads environment variables from a `.env` file                 |
@@ -324,9 +324,9 @@ npm test
 | **node-cron**  | Scheduler for running tasks using cron expressions             |
 | **umzug**      | Migration tool for Sequelize to handle database schema changes |
 
-### Dev Ddpendencies
+### Dev Dependencies
 
-| Packagey          | Purpose                                                     |
+| Package           | Purpose                                                     |
 | ----------------- | ----------------------------------------------------------- |
 | **jest**          | Testing framework for running unit and integration tests    |
 | **supertest**     | HTTP assertions library for testing Express APIs            |
