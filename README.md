@@ -253,6 +253,15 @@ module.exports = {
 
 Schedulers start automatically on server launch.
 
+| Cron Expression | Description                           |
+| --------------- | ------------------------------------- |
+| `* * * * *`     | Every minute                          |
+| `0 * * * *`     | At the start of every hour            |
+| `0 0 * * *`     | Every day at midnight                 |
+| `0 9 * * 1-5`   | At 9 AM on weekdays (Mon-Fri)         |
+| `0 0 1 * *`     | At midnight on the 1st of every month |
+
+
 ## Project Structure
 
 ```bash
