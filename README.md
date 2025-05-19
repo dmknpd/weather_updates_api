@@ -67,9 +67,7 @@ The Weather Updates API is a service designed to provide users with regular weat
 
 ```bash
 git clone https://github.com/dmknpd/weather_updates_api.git
-
 cd weather_updates_api
-
 cp .env.example .env
 ```
 
