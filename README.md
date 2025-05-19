@@ -23,7 +23,7 @@ The Weather Updates API is a service designed to provide users with regular weat
 - Nodemailer integration for transactional emails
 - Umzug for database migrations
 - Dockerized environment
-- Comprehensive test suite (92% coverage)
+- Test suite
 
 ## Features
 
@@ -40,22 +40,22 @@ The Weather Updates API is a service designed to provide users with regular weat
 
 - **Weather Integration**
 
-  - Real‑time data from WeatherAPI.com
+  - Real‑time data from `WeatherAPI.com`
   - City validation to ensure accuracy
 
 - **Email Delivery**
 
-  - Confirmation, update, and unsubscribe emails via Nodemailer
+  - Confirmation, update, and unsubscribe emails via `Nodemailer`
   - Customizable HTML templates
 
 - **Database & Migrations**
 
-  - Sequelize ORM with PostgreSQL
-  - Umzug for migration management
+  - `Sequelize ORM` with `PostgreSQL`
+  - `Umzug` for migration management
 
 - **Testing**
-  - Jest for unit tests
-  - Supertest for controller integration tests
+  - `Jest` for unit tests
+  - `Supertest` for controller integration tests
 
 ## Installation
 
