@@ -287,3 +287,17 @@ Schedulers start automatically on server launch.
 ├── jest.config.js
 └── package.json
 ```
+
+## Testing
+
+##Install dependencies:
+
+```bash
+npm install
+```
+
+##Run all tests:
+
+```bash
+npm test
+```
