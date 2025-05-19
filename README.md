@@ -290,13 +290,13 @@ Schedulers start automatically on server launch.
 
 ## Testing
 
-##Install dependencies:
+## Install dependencies:
 
 ```bash
 npm install
 ```
 
-##Run all tests:
+## Run all tests:
 
 ```bash
 npm test
