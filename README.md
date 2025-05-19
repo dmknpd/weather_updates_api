@@ -262,6 +262,20 @@ Schedulers start automatically on server launch.
 | `0 0 1 * *`     | At midnight on the 1st of every month |
 
 
+## Testing
+
+### Install dependencies:
+
+```bash
+npm install
+```
+
+### Run all tests:
+
+```bash
+npm test
+```
+
 ## Project Structure
 
 ```bash
@@ -297,16 +311,24 @@ Schedulers start automatically on server launch.
 └── package.json
 ```
 
-## Testing
+## Dependencies
 
-### Install dependencies:
+| Package        | Purpose                                                        |
+| -------------- | -------------------------------------------------------------- |
+| **express**    | Minimalist web framework for building APIs and web servers     |
+| **sequelize**  | ORM for managing database models and queries                   |
+| **pg**         | PostgreSQL client for Node.js to interact with the database    |
+| **dotenv**     | Loads environment variables from a `.env` file                 |
+| **axios**      | Promise-based HTTP client for making API requests              |
+| **nodemailer** | Module for sending emails from Node.js applications            |
+| **node-cron**  | Scheduler for running tasks using cron expressions             |
+| **umzug**      | Migration tool for Sequelize to handle database schema changes |
 
-```bash
-npm install
-```
+### Dev Ddpendencies
 
-### Run all tests:
+| Packagey          | Purpose                                                     |
+| ----------------- | ----------------------------------------------------------- |
+| **jest**          | Testing framework for running unit and integration tests    |
+| **supertest**     | HTTP assertions library for testing Express APIs            |
+| **sequelize-cli** | CLI tool for Sequelize to run migrations and seeders        |
 
-```bash
-npm test
-```
