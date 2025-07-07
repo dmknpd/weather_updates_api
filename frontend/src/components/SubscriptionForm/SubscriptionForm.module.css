@@ -37,6 +37,9 @@
   height: 30px;
 }
 
+.message {
+}
+
 .error {
   color: rgb(204, 25, 25);
   font-weight: bold;

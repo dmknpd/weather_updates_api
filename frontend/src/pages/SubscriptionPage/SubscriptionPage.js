@@ -12,6 +12,7 @@ const SubscriptionPage = () => {
     frequency: "daily",
   });
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSetData = (e) => {
     const { name, value } = e.target;
@@ -23,6 +24,7 @@ const SubscriptionPage = () => {
 
   const subscribe = async (e) => {
     e.preventDefault();
+    setMessage("");
     setError("");
 
     try {
@@ -30,6 +32,8 @@ const SubscriptionPage = () => {
         `http://localhost:5000/api/subscribe`,
         data
       );
+
+      setMessage(response.data.message);
 
       setData({
         email: "",
@@ -47,6 +51,7 @@ const SubscriptionPage = () => {
         data={data}
         handleSetData={handleSetData}
         subscribe={subscribe}
+        message={message}
         error={error}
       />
     </main>

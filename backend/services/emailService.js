@@ -1,6 +1,6 @@
 const transporter = require("../config/mail");
 
-const baseLink = `${process.env.HOST}:${process.env.PORT}/api`;
+const baseLink = `${process.env.FRONTEND_HOST}:${process.env.FRONTEND_PORT}`;
 
 exports.sendConfirmationEmail = async (
   email,
@@ -8,7 +8,7 @@ exports.sendConfirmationEmail = async (
   frequency,
   confirmationToken
 ) => {
-  const confirmationLink = `${baseLink}/confirm/${confirmationToken}`;
+  const confirmationLink = `${baseLink}/confirmation/${confirmationToken}`;
   const mailOptions = {
     from: process.env.MAIL_USER,
     to: email,

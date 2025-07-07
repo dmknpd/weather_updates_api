@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: process.env.FRONTEND,
+    origin: `${process.env.FRONTEND_HOST}:${process.env.FRONTEND_PORT}`,
   })
 );
 

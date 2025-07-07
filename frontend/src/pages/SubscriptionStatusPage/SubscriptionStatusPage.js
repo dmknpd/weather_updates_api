@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 import styles from "./SubscriptionStatusPage.module.css";
@@ -7,8 +7,9 @@ import styles from "./SubscriptionStatusPage.module.css";
 const SubscriptionStatusPage = ({ type }) => {
   const { token } = useParams();
   const [message, setMessage] = useState("Processing...");
+  const calledRef = useRef(false);
 
-  const subscribe = async () => {
+  const confirm = async () => {
     try {
       const response = await axios.get(
         `http://localhost:5000/api/confirm/${token}`
@@ -19,7 +20,7 @@ const SubscriptionStatusPage = ({ type }) => {
     }
   };
 
-  const unsubscribe = async () => {
+  const cancel = async () => {
     try {
       const response = await axios.get(
         `http://localhost:5000/api/unsubscribe/${token}`
@@ -31,11 +32,15 @@ const SubscriptionStatusPage = ({ type }) => {
   };
 
   useEffect(() => {
-    if (token && type === "confirmation") subscribe();
-    if (token && type === "unsubscribe") unsubscribe();
+    if (!token || !type || calledRef.current) return;
+
+    calledRef.current = true;
+
+    if (type === "confirmation") confirm();
+    if (type === "unsubscribe") cancel();
   }, [token, type]);
 
-  return <div>{message}</div>;
+  return <main className={styles.main}>{message}</main>;
 };
 
 export default SubscriptionStatusPage;
