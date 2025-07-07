@@ -1,0 +1,38 @@
+.subscription {
+  width: 100%;
+  position: relative;
+  top: 40%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.input {
+  width: 100%;
+  height: 35px;
+  padding: 0 10px;
+}
+
+.radio_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.radio_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  width: 100px;
+  height: 30px;
+}
