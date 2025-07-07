@@ -83,6 +83,10 @@ WEATHER_API_KEY=your_api_key_here
 MAIL_HOST=smtp.gmail.com
 MAIL_USER=your_email@example.com
 MAIL_PASSWORD=your_email_password
+
+# Frontend
+FRONTEND_HOST=your_frontend_host
+FRONTEND_PORT=your_frontend_port
 ```
 
 - Optional
