@@ -21,6 +21,11 @@
   list-style: none;
 }
 
+.icon {
+  text-decoration: none;
+  color: black;
+}
+
 .link {
   text-decoration: none;
   color: black;
