@@ -1,6 +1,6 @@
 import styles from "./SubscriptionForm.module.css";
 
-const SubscriptionForm = ({ data, handleSetData, subscribe }) => {
+const SubscriptionForm = ({ data, handleSetData, subscribe, error }) => {
   return (
     <div className={styles.subscription}>
       <form onSubmit={subscribe} className={styles.form}>
@@ -50,6 +50,8 @@ const SubscriptionForm = ({ data, handleSetData, subscribe }) => {
             />
           </div>
         </div>
+
+        {error && <div className={styles.error}>Error</div>}
 
         <button className={styles.button} type="submit">
           Get Weather

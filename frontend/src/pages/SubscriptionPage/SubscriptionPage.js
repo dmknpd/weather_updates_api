@@ -19,7 +19,6 @@ const SubscriptionPage = () => {
       ...prev,
       [name]: value,
     }));
-    console.log(data);
   };
 
   const subscribe = async (e) => {
@@ -48,6 +47,7 @@ const SubscriptionPage = () => {
         data={data}
         handleSetData={handleSetData}
         subscribe={subscribe}
+        error={error}
       />
     </main>
   );

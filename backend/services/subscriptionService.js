@@ -14,6 +14,8 @@ exports.subscribe = async (email, city, frequency) => {
   }
 
   try {
+    await weatherService.currentWeather(city);
+
     const confirmationToken = generateToken();
 
     const newSubscription = await Subscription.create({

@@ -19,7 +19,6 @@ const MainPage = () => {
     setError("");
 
     const cityName = capitalize(city.trim());
-    console.log(cityName);
 
     try {
       const response = await axios.get(

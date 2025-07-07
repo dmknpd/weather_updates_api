@@ -36,3 +36,8 @@
   width: 100px;
   height: 30px;
 }
+
+.error {
+  color: rgb(204, 25, 25);
+  font-weight: bold;
+}
